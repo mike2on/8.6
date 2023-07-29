@@ -64,14 +64,14 @@ class NewsSearch(ListView):
         return context
 
 
-class NewsCreate(CreateView, PermissionRequiredMixin):
+class NewsCreate(PermissionRequiredMixin, CreateView):
     permission_required = ('NewsPortal.add_post', )
     form_class = PostForm
     model = Post
     template_name = 'post_create.html'
 
 
-class NewsUpdate(LoginRequiredMixin, UpdateView, PermissionRequiredMixin):
+class NewsUpdate(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     permission_required = ('NewsPortal.change_post', )
     login_url = '/accounts/login/'
     form_class = PostForm
